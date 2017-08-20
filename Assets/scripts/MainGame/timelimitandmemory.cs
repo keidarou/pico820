@@ -13,6 +13,7 @@ public class timelimitandmemory : MonoBehaviour
     private GUIStyle labelStyle;
     public string scenename;
     private GUIStyle Highscore;
+    public bool maingame;
     public bool gameoverflag = false;
     float timer = 0;
     public bool pauseorquitflag = false;
@@ -92,11 +93,12 @@ public class timelimitandmemory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (maingame) { return; }
         movetheballl = GameObject.Find("MoveTheBall");
         script = movetheballl.GetComponent<movetheballautomatic>();
         if (script.pauseflag == false)
         {
-            if (timer > 10 || gameoverflag) { gameoverflag = true; }
+            if (timer > 100 || gameoverflag) { gameoverflag = true; }
             else
             {
                 timer += Time.fixedDeltaTime;

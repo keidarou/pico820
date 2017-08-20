@@ -7,7 +7,7 @@ public class MainStages : MonoBehaviour {
 	//public GameObject CodeVs;
 	int stgNum=CreateButton.sendStageNum;
 
-	string[] mapCode={
+	public static string[] mapCode={
 		"None",//stage0<-これはない
 		"1dayo",//stage1
 		"2dayooooooooooooo",
