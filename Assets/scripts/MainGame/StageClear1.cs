@@ -12,7 +12,7 @@ public class StageClear1 : MonoBehaviour {
 	public GameObject tweetbtn;
 	public GameObject replay;
 	public GameObject next;
-
+    public bool maingame;
 	movetheballautomatic script;
 
 	// Use this for initialization
@@ -27,14 +27,26 @@ public class StageClear1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (script.gameoverflag == true) {
-			text.SetActive(true);
-			tweetbtn.SetActive(true);
-			replay.SetActive(true);
-			next.SetActive(true);
+        if (maingame)
+        {
+            if (script.clearflag == true)
+            {
+                text.SetActive(true);
+                tweetbtn.SetActive(true);
+                replay.SetActive(true);
+                next.SetActive(true);
 
-		}
-
-
+            }
+        }
+        else
+        {
+            if (script.gameoverflag == true)
+            {
+                text.SetActive(true);
+                tweetbtn.SetActive(true);
+                replay.SetActive(true);
+                next.SetActive(true);
+            }
+        }
 	}
 }

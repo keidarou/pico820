@@ -15,7 +15,7 @@ public class share : MonoBehaviour
         Debug.Log("Sharing");
         Debug.Log(Application.persistentDataPath);
         // 画面をキャプチャ
-		//ScreenCapture.CaptureScreenshot("screenShot.png");
+		ScreenCapture.CaptureScreenshot("screenShot.png");
 		//ScreenCapture.CaptureScreenshot("screenShot.png");
 
 

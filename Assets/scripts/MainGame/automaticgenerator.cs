@@ -52,6 +52,8 @@ public class automaticgenerator : MonoBehaviour
         startdowny = downy;
         startupx = nowx;
         startupy = nowy;
+        kakutei[nowy, nowx] = true;
+        kakutei[downy, downx] = true;
         for (int i = 0; i <= ippen; i++)
         {
             for (int j = 0; j <= ippen; j++)
@@ -425,14 +427,12 @@ public class automaticgenerator : MonoBehaviour
             }
         }
         if (pikuto < saiteigenkabe) { SceneManager.LoadScene(scenename); }
-        int dontTLE = 0;
-        for (int i = 0; i <ippen*2 ; i++)
+        for (int i = 0; i <ippen ; i++)
         {
             int shougaibutux = Random.Range(0, ippen), shougaibutuy = Random.Range(0, ippen);
             if (shougaibutux % 2 == 0 || shougaibutuy % 2 == 0) { continue; }
             if (kakutei[shougaibutux, shougaibutuy] == false)
             {
-                dontTLE++;
                 kakutei[shougaibutux, shougaibutuy] = true;
                 map[shougaibutux, shougaibutuy] = 3;
             }

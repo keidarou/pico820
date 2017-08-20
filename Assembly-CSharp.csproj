@@ -78,6 +78,7 @@
      <Compile Include="Assets\scripts\Title\botanmanager.cs" />
      <Compile Include="Assets\scripts\Title\Config.cs" />
      <Compile Include="Assets\scripts\Title\movetheballfortitle.cs" />
+     <Compile Include="Assets\scripts\Title\sounddontremove.cs" />
      <Compile Include="Assets\scripts\touch.cs" />
      <Compile Include="Assets\share\SocialConnector\Sample\Sample.cs" />
      <Compile Include="Assets\share\SocialConnector\SocialConnector.cs" />

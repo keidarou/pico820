@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scene/endlessmodeeasy.unity
+- path: Assets/scene/automaticselectlevel.unity
   isLoaded: 1
   isActive: 1

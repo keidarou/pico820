@@ -98,7 +98,7 @@ public class timelimitandmemory : MonoBehaviour
         script = movetheballl.GetComponent<movetheballautomatic>();
         if (script.pauseflag == false)
         {
-            if (timer > 10 || gameoverflag) { gameoverflag = true; }
+            if (timer > 100 || gameoverflag) { gameoverflag = true; }
             else
             {
                 timer += Time.fixedDeltaTime;
