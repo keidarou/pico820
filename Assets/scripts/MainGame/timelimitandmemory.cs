@@ -98,7 +98,7 @@ public class timelimitandmemory : MonoBehaviour
         script = movetheballl.GetComponent<movetheballautomatic>();
         if (script.pauseflag == false)
         {
-            if (timer > 100 || gameoverflag) { gameoverflag = true; }
+            if (timer > 10 || gameoverflag) { gameoverflag = true; }
             else
             {
                 timer += Time.fixedDeltaTime;
@@ -108,42 +108,46 @@ public class timelimitandmemory : MonoBehaviour
     }
     void OnGUI()
     {
-        string s = string.Format("{0}Seconds Left", 100 - (int)timer);
-        string str = string.Format("Score : {0}", (int)clearcount);
-        GUI.Label(new Rect(Screen.width - 300, Screen.height - 50, 100, 30), str, labelStyle);
-        GUI.Label(new Rect(20, Screen.height - 50, 100, 30), s, labelStyle);
-        if (gameoverflag == true)
+        if (!maingame)
         {
-            int imamadenomax = PlayerPrefs.GetInt(scenename, 0);
-            //   Debug.Log(imamadenomax);
-            if (imamadenomax < clearcount)//もしハイスコアなら
+            string s = string.Format("{0}Seconds Left", 100 - (int)timer);
+            string str = string.Format("Score : {0}", (int)clearcount);
+            GUI.Label(new Rect(Screen.width - 300, Screen.height - 50, 100, 30), str, labelStyle);
+            GUI.Label(new Rect(20, Screen.height - 50, 100, 30), s, labelStyle);
+            if (gameoverflag == true)
             {
-                GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 160, 200, 30), "Highscore!!", Highscore);//表示されない
-                string sscore = string.Format("Highscore : {0}    Your Score : {0}", (int)clearcount);
-                // Debug.Log(sscore);
-                GUI.Label(new Rect(Screen.width / 2 - 400, Screen.height / 2 - 50, 100, 30), sscore, labelStyle);
-            }
-            else
-            {
-                string sscore = string.Format("Highscore : {0}    Your Score : {1}", (int)imamadenomax, (int)clearcount);
-                GUI.Label(new Rect(Screen.width / 2 - 400, Screen.height / 2 - 50, 100, 60), sscore, labelStyle);
-            }
-            script.gameoverflag = true;
-            if (pauseorquitflag)
-            {
-                SceneManager.LoadScene(scenename);
-                timer = 0; clearcount = 0;
-                pauseorquitflag = false;
-                gameoverflag = false;
+                int imamadenomax = PlayerPrefs.GetInt(scenename, 0);
+                //   Debug.Log(imamadenomax);
+                if (imamadenomax < clearcount)//もしハイスコアなら
+                {
+                    GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 160, 200, 30), "Highscore!!", Highscore);//表示されない
+                    string sscore = string.Format("Highscore : {0}    Your Score : {0}", (int)clearcount);
+                    PlayerPrefs.SetInt(scenename, clearcount);
+                    // Debug.Log(sscore);
+                    GUI.Label(new Rect(Screen.width / 2 - 400, Screen.height / 2 - 50, 100, 30), sscore, labelStyle);
+                }
+                else
+                {
+                    string sscore = string.Format("Highscore : {0}    Your Score : {1}", (int)imamadenomax, (int)clearcount);
+                    GUI.Label(new Rect(Screen.width / 2 - 400, Screen.height / 2 - 50, 100, 60), sscore, labelStyle);
+                }
+                script.gameoverflag = true;
+                if (pauseorquitflag)
+                {
+                    SceneManager.LoadScene(scenename);
+                    timer = 0; clearcount = 0;
+                    pauseorquitflag = false;
+                    gameoverflag = false;
+                }
             }
         }
     }
 
     public string tweetTextGenerate()
     {
-        string koubun = string.Format("I tooked {0}scores in {1} mode! Can you beat me?", clearcount, nannido);
+        string koubun = string.Format("I tooked {0}scores in {1}! Can you beat me?", clearcount, nannido);
         if (clearcount == 0) { return koubun; }
-        string mapcode = string.Format("\nThis is the map code!  【|{0}|】 ", clearcount);
+        string mapcode = string.Format("\nThis is the map code!  【{0}】 ", code);
         return koubun + mapcode;
     }
 }

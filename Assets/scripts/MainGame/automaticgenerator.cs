@@ -425,39 +425,34 @@ public class automaticgenerator : MonoBehaviour
             }
         }
         if (pikuto < saiteigenkabe) { SceneManager.LoadScene(scenename); }
-        Debug.Log("pikuto");
-        Debug.Log(pikuto);
-        int pikutocount = 0;
-        if (ippen == 24)
+        int dontTLE = 0;
+        for (int i = 0; i <ippen*2 ; i++)
         {
-            while (true)
+            int shougaibutux = Random.Range(0, ippen), shougaibutuy = Random.Range(0, ippen);
+            if (shougaibutux % 2 == 0 || shougaibutuy % 2 == 0) { continue; }
+            if (kakutei[shougaibutux, shougaibutuy] == false)
             {
-                if (pikutocount == 2) { break; }
-                int shougaibutux = Random.Range(0, ippen), shougaibutuy = Random.Range(0, ippen);
-                if (shougaibutux % 2 == 0 || shougaibutuy % 2 == 0) { continue; }
-                if (kakutei[shougaibutux, shougaibutuy] == false)
-                {
-                    pikutocount++;
-                    kakutei[shougaibutux, shougaibutuy] = true;
-                    map[shougaibutux, shougaibutuy] = 3;
-                }
+                dontTLE++;
+                kakutei[shougaibutux, shougaibutuy] = true;
+                map[shougaibutux, shougaibutuy] = 3;
             }
         }
+
         map[nowy, nowx] = 2;
         map[downy, downx] = 2;
-     /*   Debug.Log("  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7");
-        for (int i = 0; i < 17; i++)
-        {
-            string a = ""; a += i.ToString(); a += " ";
-            for (int j = 0; j < 17; j++)
-            {
-                /*if (kakutei[i, j]) { a += "1"; }
-                else { a += "0"; }
-                a += map[i, j];
-                a += " ";
-            }
-            Debug.Log(a);
-        }*/
+        /*   Debug.Log("  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7");
+           for (int i = 0; i < 17; i++)
+           {
+               string a = ""; a += i.ToString(); a += " ";
+               for (int j = 0; j < 17; j++)
+               {
+                   /*if (kakutei[i, j]) { a += "1"; }
+                   else { a += "0"; }
+                   a += map[i, j];
+                   a += " ";
+               }
+               Debug.Log(a);
+           }*/
     }
 
     // Update is called once per frame

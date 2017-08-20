@@ -14,10 +14,12 @@ public class Inputcode : MonoBehaviour
         text = inputfield.text;
 
         int first, second;
-        first = text.IndexOf("【|");
-        second = text.IndexOf("|】");
-        string code = text.Substring(first + 2, second - first + 1);
-        MainStages.mapCode[0] = code;
+        first = text.IndexOf("【");
+        second = text.IndexOf("】");
+        string code;
+        if (first == -1) { code = text; }
+        else { code = text.Substring(first + 1, second - first - 1); }
+        codevisualizer.strcode = code;
         CreateButton.sendStageNum = 0;
         if (code[0] == '1')
         {

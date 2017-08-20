@@ -17,7 +17,7 @@ public class Config : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-
+        toggle.GetComponent<Toggle>().isOn=ctrlCfg;
 	}
 	
 	// Update is called once per frame

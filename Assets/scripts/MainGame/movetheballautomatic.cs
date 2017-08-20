@@ -13,6 +13,7 @@ public class movetheballautomatic : MonoBehaviour
 	public bool clearflag = false;//クリア時にtrueを代入してやってくださいクリア画面を立ち上げます<<<<<<<<<-----けいだろーーーーーーーーーーーーーーーーー！
 	bool idouchuujanai = true;//移動中ならfalse
 	public bool slidebool = false;//slideする設定ならtrue
+   GameObject thiss;
 	public int nannido;
 	public bool automaticmode;//オートマチックならtrueで
 	//    Transform mokutekidown,  mokutekiup;//mokutekiは行くべき場所、nowは今の位置,upは上向きのボール、downは下向きのボール
@@ -126,6 +127,7 @@ public class movetheballautomatic : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+        slidebool = Config.ctrlCfg;
 		//  mapgenerator = GameObject.Find("mapgenerator");//mapgeneratorからmapの配列をひくため、ただ、これ呼ばれる順番が怪しい
 		if (automaticmode)
 		{
@@ -190,8 +192,10 @@ public class movetheballautomatic : MonoBehaviour
 				}
 				upvectornow = ballup.transform.position;
 				downvectornow = balldown.transform.position;
-				//ballup.transform.position = Vector3.Slerp(upvectornow, upvectormokuteki, Time.deltaTime);//Lerpですすむ、AnimationCurveであとで速さとか調節、第三引数ようわからないのでデバッグ
-				// balldown.transform.position = Vector3.Slerp(downvectornow, downvectormokuteki, Time.deltaTime);
+                //ballup.transform.position = Vector3.Slerp(upvectornow, upvectormokuteki, Time.deltaTime);//Lerpですすむ、AnimationCurveであとで速さとか調節、第三引数ようわからないのでデバッグ
+                // balldown.transform.position = Vector3.Slerp(downvectornow, downvectormokuteki, Time.deltaTime);
+           //     Debug.Log(nowrotation);
+           
 				if (nowrotation != acc.getDirection() && !houkoudetomatteiruka && !slidebool)
 				{
 					tomatteirutaimu += Time.deltaTime;

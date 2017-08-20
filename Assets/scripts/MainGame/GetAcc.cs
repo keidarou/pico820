@@ -16,7 +16,7 @@ public class GetAcc : MonoBehaviour
 	//フォントでばっぐよう 
 	private GUIStyle labelStyle; 
 	//関数の返り値 
-	public int ret; 
+	public int ret=0; 
 
 
 
@@ -29,10 +29,15 @@ public class GetAcc : MonoBehaviour
 		this.labelStyle.normal.textColor = Color.blue; 
 		touchScript = touch.GetComponent<touch>(); 
 	} 
+	public int getDirection() 
+	{ 
+		return ret; 
+	} 
 
 	// Update is called once per frame 
 	void Update() 
-	{ 
+	{
+        //Debug.Log(ret);
 		this.acc = Input.acceleration; 
 		//画面の対角線を境にして重力による加速度のベクトルで判断 
 		float ru = Mathf.Atan2(1.0f, 1.0f); //Mathf.Atan2(Screen.height / 2.0f, Screen.width / 2.0f); 
@@ -42,7 +47,7 @@ public class GetAcc : MonoBehaviour
 
 		float d = Mathf.Atan2(acc.y, acc.x); 
 
-		if (Config.ctrlCfg) { 
+		if (!Config.ctrlCfg) { 
 			ret = 3; 
 			if (rd <= d && d < ru) { 
 				ret = 1; 
@@ -109,10 +114,6 @@ public class GetAcc : MonoBehaviour
          } 
      }*/ 
 
-	public int getDirection() 
-	{ 
-		return ret; 
-	} 
 
 
 }

@@ -11,8 +11,8 @@ public class touch : MonoBehaviour
     public bool titlegamen;
     private float minSwipeDistY;
     Vector2 endPos, startPos;
-    float swipeDistX, swipeDistY;
-    float SignValueX, SignValueY;//方向取得のための符号
+    public float swipeDistX, swipeDistY;
+    public float SignValueX, SignValueY;//方向取得のための符号
     public GameObject inputfield, toggle;
     inputfieldanimation script, togglescript;
     void Start()
@@ -29,6 +29,7 @@ public class touch : MonoBehaviour
     void Update()
     {
 
+            ret = 0;
         if (Input.GetKeyDown(KeyCode.A)) { ret = 1; }
         if (Input.GetKeyDown(KeyCode.D)) { ret = 2; }
         if (Input.GetKeyDown(KeyCode.W)) { ret = 4; }
@@ -38,7 +39,6 @@ public class touch : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            ret = 0;
             //タッチじょうほう取得
             Touch touch = Input.touches[0];
 
