@@ -93,7 +93,9 @@ public class timelimitandmemory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneManager.GetActiveScene().name == "Title") { Destroy(gameObject); }
         if (maingame) { return; }
+        
         movetheballl = GameObject.Find("MoveTheBall");
         script = movetheballl.GetComponent<movetheballautomatic>();
         if (script.pauseflag == false)
@@ -117,12 +119,12 @@ public class timelimitandmemory : MonoBehaviour
             if (gameoverflag == true)
             {
                 int imamadenomax = PlayerPrefs.GetInt(scenename, 0);
-                //   Debug.Log(imamadenomax);
+                   Debug.Log(imamadenomax);
+                Debug.Log(clearcount);
                 if (imamadenomax < clearcount)//もしハイスコアなら
                 {
                     GUI.Label(new Rect(Screen.width / 2 - 150, Screen.height / 2 - 160, 200, 30), "Highscore!!", Highscore);//表示されない
                     string sscore = string.Format("Highscore : {0}    Your Score : {0}", (int)clearcount);
-                    PlayerPrefs.SetInt(scenename, clearcount);
                     // Debug.Log(sscore);
                     GUI.Label(new Rect(Screen.width / 2 - 400, Screen.height / 2 - 50, 100, 30), sscore, labelStyle);
                 }
@@ -135,6 +137,7 @@ public class timelimitandmemory : MonoBehaviour
                 if (pauseorquitflag)
                 {
                     SceneManager.LoadScene(scenename);
+                    PlayerPrefs.SetInt(scenename, clearcount);
                     timer = 0; clearcount = 0;
                     pauseorquitflag = false;
                     gameoverflag = false;

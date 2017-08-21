@@ -24,16 +24,16 @@ public class StageClear : MonoBehaviour {
 		next.SetActive(false);
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (script.clearflag == true) {
+	public void clear()
+    {
+
 			text.SetActive(true);
 			tweetbtn.SetActive(true);
 			replay.SetActive(true);
 			next.SetActive(true);
-
-		}
+    }
+	// Update is called once per frame
+	void Update () {
 
 
 	}

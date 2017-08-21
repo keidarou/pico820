@@ -14,6 +14,6 @@ public class selectlevelautomatic : MonoBehaviour {
     }
     public void hard()
     {
-
+        SceneManager.LoadScene("endlessmodehard");
     }
 }

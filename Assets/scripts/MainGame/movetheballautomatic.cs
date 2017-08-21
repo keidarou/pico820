@@ -157,8 +157,6 @@ public class movetheballautomatic : MonoBehaviour
 		else
 		{
 			codevisualizer cv=mapgenerator.GetComponent<codevisualizer>();
-
-			int countgoal = 0;
 		}
 
 		//フォントさくせい
@@ -210,6 +208,12 @@ public class movetheballautomatic : MonoBehaviour
 				}
 				if (Vector3.Distance(downvectormokuteki, downvectornow) <= kyoyouhanni && Vector3.Distance(upvectormokuteki, upvectornow) <= kyoyouhanni)//スピードを上げたら、この中の値を大きくしないとだめ！
 				{
+					if (shougaibutuniatatteruyoflag == true)
+					{
+						//    Debug.Log(downvectormokuteki); Debug.Log(downvectornow);
+						restartflag = true;
+                        shougaibutuniatatteruyoflag = false;
+					}
 					if (!slidebool)
 					{
 						houkoudetomatteiruka = false;
@@ -218,6 +222,7 @@ public class movetheballautomatic : MonoBehaviour
 					if (nowdownx == goaldownx && nowdowny == goaldowny && nowupx == goalupx && nowupy == goalupy)
 					{
 						clearflag = true;
+                        
 						if (automaticmode)
 						{
 							GameObject mapgen = GameObject.Find("mapgenerator");
@@ -226,6 +231,11 @@ public class movetheballautomatic : MonoBehaviour
 							timecounter.GetComponent<timelimitandmemory>().zenkaivoid();
 							SceneManager.LoadScene(scenename);
 						}
+                        else
+                        {
+                            GameObject clear=GameObject.Find("StageClear");
+                            clear.GetComponent<StageClear>().clear();
+                        }
 					}
 					if (nowdownx == goalupx && nowdowny == goalupy && nowupx == goaldownx && nowupy == goaldowny)
 					{
@@ -237,23 +247,13 @@ public class movetheballautomatic : MonoBehaviour
 							timecounter.GetComponent<timelimitandmemory>().goalupdate(nannido);
 							timecounter.GetComponent<timelimitandmemory>().zenkaivoid();
 							SceneManager.LoadScene(scenename);
-						}
-					}
-				}
-				if (Vector3.Distance(downvectormokuteki, downvectornow) <= kyoyouhanni || Vector3.Distance(upvectormokuteki, upvectornow) <= kyoyouhanni)//スピードを上げたら、この中の値を大きくしないとだめ！
-				{
-					if (shougaibutuniatatteruyoflag == true)
-					{
-						//    Debug.Log(downvectormokuteki); Debug.Log(downvectornow);
-						gameoverflag = true;
-						if (automaticmode)
-						{
-							GameObject timelimit = GameObject.Find("timecounter");
-							timelimitandmemory script = timelimit.GetComponent<timelimitandmemory>();
-							script.gameovernisaseru();
-						}
-						return;
-					}
+                        }
+                        else
+                        {
+                            GameObject clear = GameObject.Find("StageClear");
+                            clear.GetComponent<StageClear>().clear();
+                        }
+                    }
 				}
 
 				if (Vector3.Distance(upvectormokuteki, upvectornow) >= kyoyouhanni)
