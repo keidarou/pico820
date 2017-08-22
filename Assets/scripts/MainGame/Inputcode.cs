@@ -19,8 +19,9 @@ public class Inputcode : MonoBehaviour
         string code;
         if (first == -1) { code = text; }
         else { code = text.Substring(first + 1, second - first - 1); }
+        MainStages.mapCode[16] = code;
+        CreateButton.sendStageNum = 16;
         codevisualizer.strcode = code;
-        CreateButton.sendStageNum = 0;
         if (code[0] == '1')
         {
             SceneManager.LoadScene("maineasy");

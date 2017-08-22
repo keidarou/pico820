@@ -24,6 +24,7 @@ public class MainStages : MonoBehaviour {
 		"",
 		"",
 		"15dayo",//stage15
+        ""
 	};
 
 	// Start前フレームに実行

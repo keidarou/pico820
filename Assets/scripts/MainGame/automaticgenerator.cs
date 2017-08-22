@@ -83,7 +83,7 @@ public class automaticgenerator : MonoBehaviour
             //重力通りに動く玉から
             while (true)
             {
-                cnt++; if (cnt > 99999) { break; }
+                cnt++; if (cnt > 1000) { break; }
                 //0は下向き、1は右向き、２は上向き、３は左向き
                 muki = Random.Range(0, 4);
                 if (muki == previous) { continue; }
